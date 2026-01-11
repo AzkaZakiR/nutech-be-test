@@ -5,7 +5,7 @@ export const openApiSpec = {
       version: "1.0.0",
       description: "Module Membership API Documentation",
    },
-   servers: [{ url: "http://localhost:3000" }, { url: "https://nutech.azkazk11.my.id" }],
+   servers: [{ url: "http://localhost:3000" }, { url: "http://nutech.azkazk11.my.id" }],
 
    tags: [
       { name: "Auth", description: "Registration & Login" },
