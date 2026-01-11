@@ -17,3 +17,18 @@ export const topUpBalance = async (req: Request, res: Response, next: NextFuncti
       return getResponse(res, 500, 500, "Internal server error", null);
    }
 };
+
+export const servicesTransaction = async (req: Request, res: Response, next: NextFunction) => {
+   try {
+      const userId = req.user?.id!;
+      const { service_code } = req.body;
+      const result = await transactionService.servicesTransaction(userId, service_code);
+      return getResponse(res, 200, 0, "Transaksi Berhasil", result);
+   } catch (error) {
+      if (error instanceof AppError) {
+         return getResponse(res, error.httpCode, error.status, error.message, null);
+      }
+      console.log("ni error", error);
+      return getResponse(res, 500, 500, "Internal server error", null);
+   }
+};
