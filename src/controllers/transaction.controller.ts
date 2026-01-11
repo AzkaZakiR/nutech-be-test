@@ -6,9 +6,9 @@ import { AppError } from "../utils/errorHandle/appError";
 export const topUpBalance = async (req: Request, res: Response, next: NextFunction) => {
    try {
       const userId = req.user?.id!;
-      const { amount } = req.body;
+      const { top_up_amount } = req.body;
 
-      const result = await transactionService.topUpBalance(userId, amount);
+      const result = await transactionService.topUpBalance(userId, top_up_amount);
       return getResponse(res, 200, 0, "Top up amount", result);
    } catch (error) {
       if (error instanceof AppError) {

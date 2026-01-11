@@ -8,7 +8,12 @@ export async function getUserById(userId: string) {
    if (!user) {
       error(404, 104, "User tidak ditemukan");
    }
-   return user;
+   return {
+      email: user.email,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      profile_image: user.profile_image,
+   };
 }
 export async function updateUserBalance(userId: string, amount: bigint) {
    const user = await userRepository.findById(userId);
@@ -31,7 +36,12 @@ export async function updateProfile(userId: string, payload: any) {
       error(404, 104, "User tidak ditemukan");
    }
    const updatedUser = await userRepository.updateUser(userId, payload);
-   return updatedUser;
+   return {
+      email: updatedUser.email,
+      first_name: updatedUser.first_name,
+      last_name: updatedUser.last_name,
+      profile_image: updatedUser.profile_image,
+   };
 }
 
 export async function updateProfilePhoto(userId: string, photoUrl: string) {
@@ -40,7 +50,12 @@ export async function updateProfilePhoto(userId: string, photoUrl: string) {
       error(404, 104, "User tidak ditemukan");
    }
    const updatedUser = await userRepository.updateUserPhoto(userId, photoUrl);
-   return updatedUser;
+   return {
+      email: updatedUser.email,
+      first_name: updatedUser.first_name,
+      last_name: updatedUser.last_name,
+      profile_image: updatedUser.profile_image,
+   };
 }
 
 export async function getUserBalance(userId: string) {

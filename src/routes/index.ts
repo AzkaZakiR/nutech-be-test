@@ -1,5 +1,5 @@
 import { Router } from "express";
-import authRoutes from "./Auth";
+import authRoutes from "./auth";
 import userRoutes from "./user";
 import bannerRoutes from "./banner";
 import serviceRoutes from "./service";
