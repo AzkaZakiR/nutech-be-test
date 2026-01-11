@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import * as userService from "../services/user.services";
+import * as userService from "../services/user.service";
 import getResponse from "../utils/handleResponse/getResponse";
 import { AppError } from "../utils/errorHandle/appError";
 import { uploadProfileImage } from "../utils/multer/uploadProfilePhoto";

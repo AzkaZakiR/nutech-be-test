@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import getResponse from "../utils/handleResponse/getResponse";
 import { error } from "../utils/errorHandle/error";
-import * as BannerService from "../services/banner.repository";
+import * as BannerService from "../services/banner.service";
 export const getBanners = async (req: Request, res: Response) => {
    try {
       const banners = await BannerService.getAllBanners();
