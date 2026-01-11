@@ -59,3 +59,13 @@ INSERT INTO services (service_code, service_name, service_icon, service_tariff) 
 ('VOUCHER_MAKANAN', 'Voucher Makanan', 'https://nutech-integrasi.app/dummy.jpg', 100000),
 ('QURBAN', 'Qurban', 'https://nutech-integrasi.app/dummy.jpg', 200000),
 ('ZAKAT', 'Zakat', 'https://nutech-integrasi.app/dummy.jpg', 300000);
+
+INSERT INTO banner (id, banner_name, banner_image, description) VALUES
+(11, 'Promo Ramadhan', 'ramadhan.jpg', 'Nikmati diskon spesial Ramadhan untuk semua produk.'),
+(12, 'Diskon Akhir Tahun', 'akhir_tahun.jpg', 'Penawaran menarik menyambut akhir tahun 2026.'),
+(13, 'Belanja Hemat', 'belanja_hemat.jpg', 'Hemat lebih banyak dengan promo belanja hemat bulan ini.'),
+(14, 'Promo Hari Kemerdekaan', 'hari_kemerdekaan.jpg', 'Rayakan kemerdekaan dengan diskon hingga 50%.'),
+(15, 'Flash Sale Akhir Pekan', 'flash_sale.jpg', 'Jangan lewatkan flash sale setiap akhir pekan.'),
+(16, 'Promo Spesial Anak', 'promo_anak.jpg', 'Produk anak-anak dengan harga spesial minggu ini.'),
+(17, 'Liburan Seru', 'liburan_seru.jpg', 'Persiapkan liburan Anda dengan penawaran paket seru.'),
+(18, 'Diskon Online Exclusive', 'online_exclusive.jpg', 'Diskon khusus untuk pembelian melalui toko online kami.');

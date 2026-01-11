@@ -1,6 +1,8 @@
 import path from "path";
 import express, { json, urlencoded, Request, Response, NextFunction } from "express";
 import router from "../routes";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "../swagger";
 
 const app = express();
 app.use(json());
@@ -13,5 +15,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use(router);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 export default app;
