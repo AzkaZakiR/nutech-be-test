@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { verifyJWT } from "../utils/jwt/jwt.utils";
 import getResponse from "../utils/handleResponse/getResponse";
-
+import { JWTPayload } from "../types/jwt";
 export function userMiddleware(req: Request, res: Response, next: NextFunction) {
    const authHeader = req.headers.authorization;
 
@@ -16,8 +16,8 @@ export function userMiddleware(req: Request, res: Response, next: NextFunction) 
    }
 
    try {
-      const user = verifyJWT(token);
-      req.user = user.payload;
+      const user = verifyJWT<JWTPayload>(token);
+      req.user = user;
       next();
    } catch (err) {
       return getResponse(res, 401, 103, "Token tidak valid atau kaladuarsa", null);

@@ -6,16 +6,12 @@ import { uploadProfileImage } from "../utils/multer/uploadProfilePhoto";
 
 export const helloUser = (req: Request, res: Response, next: NextFunction) => {
    const userId = req.user?.id!;
-   console.log("masuk get profile", req.user);
-   console.log("userId", userId);
 
    res.json({ "message": "Hello, User this is token routes!" }).send();
 };
 export const getProfile = async (req: Request, res: Response) => {
    try {
       const userId = req.user?.id!;
-      console.log("masuk get profile", req.user);
-      console.log("userId", userId);
 
       const result = await userService.getUserById(userId);
       return getResponse(res, 200, 0, "User profile retrieved successfully", result);
@@ -23,7 +19,6 @@ export const getProfile = async (req: Request, res: Response) => {
       if (error instanceof AppError) {
          return getResponse(res, error.httpCode, error.status, error.message, null);
       }
-      console.log("ni error", error);
       return getResponse(res, 500, 999, "Internal server error", null);
    }
 };
