@@ -1,5 +1,3 @@
-// import { UserPayload } from "../user";
-
 export interface UserPayload {
    id: string;
    email: string;

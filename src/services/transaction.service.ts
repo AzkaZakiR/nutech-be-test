@@ -33,8 +33,6 @@ export async function servicesTransaction(userId: string, serviceCode: string) {
    }
 
    const transaction = await transactionRepository.createTransaction(userId, BigInt(-serviceName.service_tariff), serviceName.id, transactionType, `Pembelian layanan ${serviceName.service_name}`);
-   console.log("transaksi", transaction);
-   console.log(serviceName);
 
    return {
       invoice_number: transaction.invoice_number,
@@ -44,4 +42,15 @@ export async function servicesTransaction(userId: string, serviceCode: string) {
       total_amount: Number(transaction.total_amount),
       created_on: transaction.transaction_date,
    };
+}
+
+export async function historyTransaction(userId: string, offset?: number, limit?: number) {
+   const user = await userRepository.findById(userId);
+   if (!user) {
+      error(404, 104, "User tidak ditemukan");
+   }
+
+   const userHistory = await transactionRepository.historyTransaction(userId, offset, limit);
+
+   return userHistory;
 }

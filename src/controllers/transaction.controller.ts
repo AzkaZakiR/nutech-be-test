@@ -28,7 +28,23 @@ export const servicesTransaction = async (req: Request, res: Response, next: Nex
       if (error instanceof AppError) {
          return getResponse(res, error.httpCode, error.status, error.message, null);
       }
-      console.log("ni error", error);
+      return getResponse(res, 500, 500, "Internal server error", null);
+   }
+};
+
+export const historyTransaction = async (req: Request, res: Response) => {
+   try {
+      const userId = req.user?.id!;
+      const offset = req.query.offset ? Number(req.query.offset) : 0;
+      const limit = req.query.limit ? Number(req.query.limit) : 0;
+
+      const result = await transactionService.historyTransaction(userId, offset, limit);
+
+      return getResponse(res, 200, 0, "Get history berhasil", result);
+   } catch (error) {
+      if (error instanceof AppError) {
+         return getResponse(res, error.httpCode, error.status, error.message, null);
+      }
       return getResponse(res, 500, 500, "Internal server error", null);
    }
 };

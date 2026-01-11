@@ -104,4 +104,37 @@ export class TransactionRepository {
          client.release();
       }
    }
+
+   async historyTransaction(userId: string, offset?: number, limit?: number) {
+      const finalOffset = offset ?? 0;
+      const finalLimit = limit ?? 0;
+
+      let sql = `
+      SELECT
+        invoice_number,
+        transaction_type,
+        description,
+        total_amount,
+        createdon AS created_on
+      FROM transactions
+      WHERE user_id = $1
+      ORDER BY createdon DESC
+    `;
+      const values: any[] = [userId];
+
+      if (finalLimit > 0) {
+         values.push(finalLimit, finalOffset);
+         sql += ` LIMIT $2 OFFSET $3`;
+      } else {
+         values.push(finalOffset);
+         sql += ` OFFSET $2`;
+      }
+
+      const { rows } = await pool.query(sql, values);
+      return {
+         offset: finalOffset,
+         limit: finalLimit,
+         records: rows,
+      };
+   }
 }

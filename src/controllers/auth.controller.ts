@@ -17,7 +17,6 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       if (error instanceof AppError) {
          return getResponse(res, error.httpCode, error.status, error.message, null);
       }
-      console.log("ni error", error);
       return getResponse(res, 500, 999, "Internal server error", null);
    }
 };
@@ -31,7 +30,6 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
       if (error instanceof AppError) {
          return getResponse(res, error.httpCode, error.status, error.message, null);
       }
-      console.log("ni error", error);
       return getResponse(res, 500, 999, "Internal server error", null);
    }
 };

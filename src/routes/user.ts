@@ -9,5 +9,4 @@ userRoutes.get("/hello", userMiddleware, UserController.helloUser);
 userRoutes.put("/update", userMiddleware, UserController.updateProfile);
 userRoutes.put("/image", userMiddleware, upload.single("file"), UserController.updateProfilePhoto);
 userRoutes.get("/balance", userMiddleware, UserController.getUserBalance);
-// userRoutes.post("/top-up", UserController.topUpBalance);
 export default userRoutes;
