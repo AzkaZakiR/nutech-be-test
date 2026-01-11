@@ -1,10 +1,12 @@
 import path from "path";
 import express, { json, urlencoded, Request, Response, NextFunction } from "express";
 import router from "../routes";
+import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "../swagger";
+import { openApiSpec } from "../swagger/swagger.json";
 
 const app = express();
+app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -15,6 +17,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use(router);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiSpec));
 
 export default app;
