@@ -56,3 +56,15 @@ export const updateProfilePhoto = async (req: Request, res: Response) => {
       return getResponse(res, 500, 500, "Internal server error", null);
    }
 };
+
+export const getUserBalance = async (req: Request, res: Response) => {
+   try {
+      const userId = req.user?.id!;
+      const result = await userService.getUserBalance(userId);
+      return getResponse(res, 200, 0, "Get balance Berhasil", result);
+   } catch (error) {
+      if (error instanceof AppError) {
+         return getResponse(res, error.httpCode, error.status, error.message, null);
+      }
+   }
+};

@@ -33,6 +33,7 @@ export class UserRepository {
       const { rows } = await pool.query(sql, values);
       return rows[0];
    }
+
    async updateUserPhoto(userId: string, photoUrl: string) {
       const sql = `
         UPDATE users
@@ -42,6 +43,15 @@ export class UserRepository {
         RETURNING *`;
       const values = [photoUrl, userId];
       const { rows } = await pool.query(sql, values);
+      return rows[0];
+   }
+
+   async getUserBalance(userId: string) {
+      const sql = `
+        SELECT balance
+        FROM users
+        WHERE id = $1`;
+      const { rows } = await pool.query(sql, [userId]);
       return rows[0];
    }
 }

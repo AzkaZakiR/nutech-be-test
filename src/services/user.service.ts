@@ -42,3 +42,12 @@ export async function updateProfilePhoto(userId: string, photoUrl: string) {
    const updatedUser = await userRepository.updateUserPhoto(userId, photoUrl);
    return updatedUser;
 }
+
+export async function getUserBalance(userId: string) {
+   const user = await userRepository.findById(userId);
+   if (!user) {
+      error(404, 104, "User tidak ditemukan");
+   }
+   const balance = await userRepository.getUserBalance(userId);
+   return { balance: user.balance };
+}

@@ -23,7 +23,6 @@ export class AuthRepository {
 
    async create(payload: any, hashedPassword: string) {
       const id = randomUUID();
-      console.log(payload);
 
       const sql = `
         INSERT INTO users (
