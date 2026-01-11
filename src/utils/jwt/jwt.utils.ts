@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { StringValue } from "ms";
-
+import dotenv from "dotenv";
+dotenv.config();
 interface VerifyJWTResult<T> {
    payload: T | null;
    expired: boolean;
